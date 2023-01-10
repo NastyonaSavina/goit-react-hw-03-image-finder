@@ -54,7 +54,10 @@ export class App extends Component {
             images: [...images, ...imagesData],
             totalImages: data.totalHits,
           }));
-
+          if (totalPages === 0) {
+            NotificationManager.warning('Sorry, there are no images matching your search query. Please try again') ;
+            
+          }
           if (totalPages > page) {
             this.setState({ showLoadMoreBtn: true });
            
