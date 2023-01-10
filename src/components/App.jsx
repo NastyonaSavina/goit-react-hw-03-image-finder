@@ -76,10 +76,8 @@ export class App extends Component {
     try {
       const { data } = await FetchImagesByQuery({ query, page });
       const { hits } = data;
-      console.log(hits);
       this.setState({ images: hits, status: STATUS.success });
     } catch (error) {
-      console.log(error);
       this.setState({ status: STATUS.error });
     }
   };
@@ -105,6 +103,8 @@ export class App extends Component {
     handleLoadMore = () => {
       this.setState(prevState => ({
         page: prevState.page + 1,
+        isLoading: true,
+
        
       }));
     }
@@ -122,28 +122,25 @@ export class App extends Component {
 
     render() {
 
-      const { isLoading, images, showModal, largeImage,query } = this.state;
+      const { isLoading, images, showModal, largeImage } = this.state;
       const { handleUpdateQuery, handleToggleModal, openModal, handleLoadMore } = this;
     
       return (
         <>
           <Searchbar onSubmit={handleUpdateQuery} />
 
-          
-
-          {isLoading && <Loder />}
-
           {images.length !== 0 && (
           <ImageGallery images={images} openModal={openModal} />
-        )}
+          )}
+
           {showModal && (
           <Modal onClose={handleToggleModal} largeImage={largeImage} />
           )}
-      
+
+          {isLoading && <Loder />}
+
           {this.state.showLoadMoreBtn && <Button onClick={handleLoadMore} />}
-     
-     
-    
+       
        
           <NotificationContainer />
         </>

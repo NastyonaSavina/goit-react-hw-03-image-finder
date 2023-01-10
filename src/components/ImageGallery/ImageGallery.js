@@ -33,7 +33,7 @@ ImageGallery.propTypes = {
     PropTypes.shape({
         id: PropTypes.number.isRequired,
         webformatURL: PropTypes.string.isRequired,
-        tags:PropTypes.string.isRequired,
+        tags:PropTypes.string,
     })
   ),
 };

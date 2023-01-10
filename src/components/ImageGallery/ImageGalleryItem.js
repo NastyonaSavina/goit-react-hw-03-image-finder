@@ -20,7 +20,7 @@ export const ImageGalleryItem = ({ imageUrl, tags, index, openModal }) => {
 
 ImageGalleryItem.propTypes = {
     index: PropTypes.number.isRequired,
-    tags: PropTypes.string.isRequired,
+    tags: PropTypes.string,
     imageUrl: PropTypes.string.isRequired,
     openModal: PropTypes.func.isRequired,
 };
